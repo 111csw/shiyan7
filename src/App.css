@@ -1,38 +1,129 @@
-.App {
-  text-align: center;
+/* 主体布局 */
+.game {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  flex-direction: row; /* 水平布局 */
+  font-family: 'Arial', sans-serif;
+  background-image: url('./bcg.png'); /* 设置背景图片 */
+  background-size: cover; /* 让背景图片覆盖整个页面 */
+  background-position: center; /* 背景图片居中 */
+  background-repeat: no-repeat; /* 防止背景图重复 */
+  background-attachment: fixed; /* 背景图片固定，不随页面滚动 */
+  overflow: hidden; /* 防止页面滚动 */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 棋盘部分 */
+.game-board {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 70%;  /* 棋盘的宽度 */
+  height: 78vh;  /* 设置棋盘的高度，确保与背景图一致 */
+  margin-right: 20px;
+  position: relative;
+  overflow: hidden;  /* 防止棋盘内容溢出 */
+  
+  /* 设置背景图 */
+  background-image: url('./bac.jpg'); /* 设置背景图片 */
+  background-size: 100% 100%;  /* 背景图填满整个棋盘区域（宽高匹配） */
+  background-position: center;  /* 背景图片居中对齐 */
+  background-repeat: no-repeat;  /* 防止背景图重复 */
+  background-attachment: fixed;  /* 背景图片固定，不随页面滚动 */
+  border-radius: 10px;  /* 可选：为棋盘添加圆角 */
+  padding: 20px;  /* 可选：为棋盘添加内边距 */
+}
+
+/* 棋盘行 */
+.board-row {
+  display: flex;
+}
+
+/* 每个格子的样式 */
+.square {
+  width: 40px;
+  height: 40px;
+  background-color: #fffcf7;
+  border: 1px solid #ccc;
+  margin: 0;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.square:focus {
+  outline: none;
+}
+
+/* 点击时添加的效果 */
+.square:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 点击棋子时的效果 */
+.square:active {
+  transform: scale(0.98);
+}
+
+/* 棋子的具体样式 */
+.square.X {
+  background-color: #d9534f;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.square.O {
+  background-color: #0275d8;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 胜利状态的提示文本 */
+.status {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 历史记录部分 */
+.game-info {
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 30%;
+  position: relative;
+}
+
+/* 历史记录按钮 */
+button {
+  padding: 5px 15px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.98);
 }
